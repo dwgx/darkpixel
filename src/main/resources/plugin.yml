@@ -2,7 +2,7 @@ name: DarkPixel
 version: 1.0
 main: com.darkpixel.Main
 api-version: 1.21.4
-depend: [ProtocolLib, NBTAPI]
+depend: [ProtocolLib, NBTAPI, PacketEvents]
 
 commands:
   aichat:
