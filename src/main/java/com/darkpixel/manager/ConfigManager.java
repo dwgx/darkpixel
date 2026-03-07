@@ -13,23 +13,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfigManager {
     private final JavaPlugin plugin;
-    private final Map<String, YamlConfiguration> configs = new HashMap<>();
-    private final Map<String, File> configFiles = new HashMap<>();
+    private final Map<String, YamlConfiguration> configs = new ConcurrentHashMap<>();
+    private final Map<String, File> configFiles = new ConcurrentHashMap<>();
 
     public ConfigManager(JavaPlugin plugin) {
         this.plugin = plugin;
         String[] configNames = {"config.yml", "minigame.yml", "commands.yml", "chat_history.yml",
                 "darkac.yml", "freeze_data.yml", "player.yml", "world_data.yml"};
-        Global.executor.submit(() -> {
-            for (String configName : configNames) {
-                File file = new File(plugin.getDataFolder(), configName);
-                configFiles.put(configName, file);
-                configs.put(configName, FileUtil.loadOrCreate(file, plugin, configName));
-            }
-        });
+        for (String configName : configNames) {
+            File file = new File(plugin.getDataFolder(), configName);
+            configFiles.put(configName, file);
+            configs.put(configName, FileUtil.loadOrCreate(file, plugin, configName));
+        }
     }
 
     public CompletableFuture<Void> reloadAllConfigsAsync() {
@@ -37,7 +36,7 @@ public class ConfigManager {
             for (String configName : configFiles.keySet()) {
                 configs.put(configName, YamlConfiguration.loadConfiguration(configFiles.get(configName)));
             }
-        });
+        }, Global.executor);
     }
 
     public YamlConfiguration getConfig(String configName) {

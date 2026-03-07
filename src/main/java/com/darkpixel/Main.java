@@ -76,7 +76,7 @@ public final class Main extends JavaPlugin {
             }
             Global.executor.submit(() -> {
                 try {
-                    context.getConfigManager().reloadAllConfigsAsync();
+                    context.getConfigManager().reloadAllConfigsAsync().join();
                     context.getRankManager().reload();
                     sender.sendMessage("§a所有配置文件已重新加载！");
                 } catch (Exception e) {
