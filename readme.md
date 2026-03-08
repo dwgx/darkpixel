@@ -1,24 +1,33 @@
 # DarkPixel
 
-DarkPixel 是一个面向 Paper 1.21.4 的综合服务器插件，包含 AI 聊天、大厅 GUI、NPC、反作弊和多种玩家交互功能。
+DarkPixel 是一个面向 Paper 1.21.4 的服务器插件集合。你可以把它理解成一个「把管理功能、互动玩法和聊天能力放在一起」的插件包。
 
-## 环境要求
+## 这个仓库主要做什么
+
+- 服务器管理相关功能
+- 玩家互动和大厅类功能
+- 聊天相关扩展能力
+- 一些反作弊和运维辅助能力
+
+如果你是第一次接触，建议先在测试服里跑通，再上生产服。
+
+## 运行环境
 
 - Java 21
 - Paper 1.21.4
-- Gradle Wrapper（仓库已包含）
+- Gradle Wrapper（仓库已自带）
 
-## 运行时依赖插件
+## 依赖插件（必装）
 
 - ProtocolLib
 - NBTAPI
 - PacketEvents
 
-这三个插件为强依赖，需先安装到服务器 `plugins/` 目录。
+缺少依赖时，插件通常无法正常加载。
 
-## 快速安装
+## 快速开始
 
-1. 构建插件
+### 1) 编译
 
 Windows:
 
@@ -32,31 +41,35 @@ Linux/macOS:
 ./gradlew build
 ```
 
-2. 构建产物位于：
+### 2) 放入服务器
 
-`build/libs/`
+构建产物在：`build/libs/`
 
-3. 将构建出的 `DarkPixel` jar 与依赖插件一起放入服务器 `plugins/` 目录，启动服务器。
+把生成的 jar 和依赖插件一起放到服务器 `plugins/` 目录，重启服务器。
 
-## 常用命令
+## 常见命令
 
-- `/aichat public <内容>`: 公开 AI 对话
-- `/dashboard`: 打开大厅面板
-- `/npc ...`: 管理大厅 NPC
-- `/freeze <player> ...`: 冻结/解冻玩家
-- `/darkac ...`: 反作弊管理
-- `/reloadconfig`: 重载配置
+- `/aichat public <内容>`：公开 AI 对话
+- `/dashboard`：打开大厅面板
+- `/npc ...`：管理 NPC
+- `/freeze <player> ...`：冻结/解冻玩家
+- `/darkac ...`：反作弊相关管理
+- `/reloadconfig`：重载配置
 
-## 主要配置文件
+## 配置文件
 
-- `config.yml`: 主配置
-- `minigame.yml`: 小游戏/传送点配置
-- `commands.yml`: AI 命令模板
-- `darkac.yml`: 反作弊配置
-- `chat_history.yml`: 聊天历史
+- `config.yml`：主配置
+- `minigame.yml`：小游戏/传送点
+- `commands.yml`：命令模板
+- `darkac.yml`：反作弊
+- `chat_history.yml`：聊天历史
 
 ## 开发说明
 
-- `build.gradle` 已固定 `Java 21` 目标版本。
-- `plugin.yml` 使用 `depend` 声明依赖，缺失依赖时插件不会加载。
-- 代码和配置文件建议使用 UTF-8 编码。
+- 项目使用 Gradle 构建
+- 目标 Java 版本为 21
+- 建议统一使用 UTF-8 编码
+
+## 免责声明
+
+本项目仅用于合法场景下的服务器管理与学习研究，请遵守目标平台规则与当地法律法规。
