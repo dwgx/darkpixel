@@ -1,10 +1,11 @@
 # 数据库
+# 密码留空时会从环境变量 DARKPIXEL_DB_PASSWORD 读取 避免明文写在配置里
 mysql:
   host: "localhost"
   port: 3306
   database: "darkpixel"
   username: "root"
-  password: "dwgx0705"
+  password: ""
 http_port: 25560
 rank_server_url: "http://localhost:25560"
 

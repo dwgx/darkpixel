@@ -29,7 +29,7 @@ public class RankManager {
     public Connection getConnection() throws SQLException {
         YamlConfiguration config = context.getConfigManager().getConfig();
         String url = "jdbc:mysql://" + config.getString("mysql.host") + ":" + config.getInt("mysql.port") + "/" + config.getString("mysql.database") + "?autoReconnect=true";
-        return DriverManager.getConnection(url, config.getString("mysql.username"), config.getString("mysql.password"));
+        return DriverManager.getConnection(url, config.getString("mysql.username"), context.getConfigManager().getMysqlPassword());
     }
 
     private void loadGroups() throws SQLException {

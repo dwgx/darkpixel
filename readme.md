@@ -64,6 +64,8 @@ Linux/macOS:
 - `darkac.yml`：反作弊
 - `chat_history.yml`：聊天历史
 
+数据库密码建议用环境变量 `DARKPIXEL_DB_PASSWORD`，`config.yml` 里的 `mysql.password` 留空即可。
+
 ## 开发说明
 
 - 项目使用 Gradle 构建

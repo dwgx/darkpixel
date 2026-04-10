@@ -42,7 +42,7 @@ public class PlayerData {
         int port = config.getInt("mysql.port");
         String database = config.getString("mysql.database");
         String username = config.getString("mysql.username");
-        String password = config.getString("mysql.password");
+        String password = context.getConfigManager().getMysqlPassword();
         String url = String.format("jdbc:mysql://%s:%d/%s?autoReconnect=true", host, port, database);
         return DriverManager.getConnection(url, username, password);
     }

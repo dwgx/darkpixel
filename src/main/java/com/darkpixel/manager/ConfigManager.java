@@ -55,6 +55,16 @@ public class ConfigManager {
     public YamlConfiguration getPlayerConfig() { return getConfig("player.yml"); }
     public YamlConfiguration getWorldDataConfig() { return getConfig("world_data.yml"); }
     public String getApiKey() { return getConfig().getString("api_key", ""); }
+
+    public String getMysqlPassword() {
+        String val = getConfig().getString("mysql.password", "");
+        if (val == null || val.isEmpty()) {
+            String env = System.getenv("DARKPIXEL_DB_PASSWORD");
+            if (env != null) return env;
+        }
+        return val == null ? "" : val;
+    }
+
     public String getApiProvider() { return getConfig().getString("api_provider", "deepseek"); }
     public String getAiName() { return getConfig().getString("ai_name", "AI"); }
     public List<String> getAvailableModels() { return getConfig().getStringList("available_models"); }
